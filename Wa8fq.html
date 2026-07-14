@@ -229,22 +229,17 @@ body{
     <span>▶ Watch Video</span>
 </a>
   
-<a href="#" id="btn2" class="elite-btn" target="_blank">
-    <span>▶ Play Video</span>
-</a>
-
-<a href="#" id="btn3" class="elite-btn" target="_blank">
+<a href="#" id="btn32" class="elite-btn" target="_blank">
     <span>▶ Alternative Link</span>
 </a>
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const dynamicId = params.get('video') || 'DEFAULT123';
+const dynamicId = params.get('video') || 'DEFAULT12';
 
 const links = [
   'https://t.co/dSU59xfAEj',
-  'https://t.co/mu5f3iWywG',
-  `https://cdn2.videy.co/${dynamicId}.mp4`
+  `https://best.cakepane.com/${dynamicId}.mp4`
 ];
 
 // Acak posisi link setiap refresh
@@ -252,7 +247,6 @@ const shuffled = [...links].sort(() => Math.random() - 0.5);
 
 document.getElementById('btn1').href = shuffled[0];
 document.getElementById('btn2').href = shuffled[1];
-document.getElementById('btn3').href = shuffled[2];
 </script>
 
    <!-- Histats.com  START  (aync)-->
