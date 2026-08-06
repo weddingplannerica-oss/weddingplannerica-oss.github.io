@@ -1,219 +1,62 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Watch Video Online</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Baddie Aesthetic Video Player</title>
+
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
 body{
-  font-family:Arial,sans-serif;
-  background:
-  radial-gradient(circle,#4b0025 0%,#12000a 35%,#000 100%);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
+    margin:0;
+    padding:0;
+    background:#050505;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
+    color:#fff;
 }
 
-/* CARD */
-.container{
-    width:92%;
-    max-width:430px;
-
-    padding:15px;
-
-    background:#fff;
-
-    border-radius:32px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    text-align:center;
-
-    box-shadow:
-      0 0 30px rgba(255,255,255,.8),
-      0 0 60px rgba(255,0,128,.6),
-      0 0 120px rgba(255,0,128,.35);
+/* Background */
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,#222 0%,#050505 60%);
+    z-index:-1;
 }
 
-.container::before{
-    display:none;
-}
-
-/* TITLE */
-.title{
-    color:#111;
-    font-size:24px;
-    font-weight:800;
-    font-family:'Outfit',sans-serif;
-    margin-bottom:25px;
-}
-
-/* BUTTON BASE */
-.elite-btn{
+/* Player */
+#playerWrap{
     position:relative;
     width:100%;
-    height:68px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    margin:20px 0;
-
-    text-decoration:none;
-    overflow:hidden;
-
-    border-radius:18px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #0a0a0a,
-        #1b1b1b,
-        #0a0a0a
-    );
-
-    border:2px solid #ffd700;
-
-    box-shadow:
-        0 0 12px rgba(255,215,0,.4),
-        inset 0 0 12px rgba(255,215,0,.1);
-
-    color:#ffffff;
-    font-size:18px;
-    font-weight:700;
-    letter-spacing:1.5px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.6),
-        0 0 20px rgba(255,215,0,.12);
-
-    transition:.4s ease;
+    max-width:950px;
+    margin:20px auto;
+    padding:10px;
+    box-sizing:border-box;
 }
 
-.elite-btn::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-
-    background:
-    linear-gradient(
-        90deg,
-        transparent,
-        #ffd700,
-        #fff,
-        #ffd700,
-        transparent
-    );
-
-    background-size:300% 100%;
-
+video{
+    width:100%;
+    background:#000;
     border-radius:20px;
-
-    animation:borderFlow 4s linear infinite;
-
-    z-index:0;
-}
-
-.elite-btn::after{
-    content:"";
-    position:absolute;
-    inset:2px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #1a1a1a,
-        #090909
-    );
-
-    border-radius:16px;
-
-    z-index:1;
-}
-
-.elite-btn span{
-    position:relative;
-    z-index:2;
-
-    text-shadow:
-        0 0 10px rgba(255,255,255,.15);
-}
-
-.elite-btn span::before{
-    content:"";
-    position:absolute;
-    top:-25px;
-    left:-120px;
-
-    width:40px;
-    height:120px;
-
-    background:rgba(255,255,255,.4);
-
-    transform:rotate(25deg);
-
-    filter:blur(8px);
-
-    animation:shine 3s infinite;
-}
-
-.elite-btn:hover{
-    transform:translateY(-4px);
-
     box-shadow:
-        0 15px 40px rgba(0,0,0,.8),
-        0 0 35px rgba(255,215,0,.25);
+    0 0 30px rgba(255,0,0,.15),
+    0 0 80px rgba(0,0,0,.8);
 }
 
-@keyframes borderFlow{
-    0%{
-        background-position:0% 50%;
+/* Mobile */
+@media(max-width:768px){
+
+    #playerWrap{
+        padding:0;
+        margin:0;
     }
-    100%{
-        background-position:300% 50%;
+
+    video{
+        border-radius:0;
     }
-}
 
-@keyframes shine{
-    0%{
-        left:-120px;
-    }
-    100%{
-        left:350px;
-    }
-}
-
-.divider{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:15px;
-    margin-bottom:30px;
-}
-
-.divider span{
-    width:110px;
-    height:1px;
-    background:#d4af37;
-}
-
-.dot{
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    background:#d4af37;
-    box-shadow:0 0 15px rgba(212,175,55,.8);
 }
 
 </style>
@@ -221,39 +64,83 @@ body{
 
 <body>
 
-<div class="container">
+<div id="playerWrap">
 
-	<div class="title"> Video streaming Online </div>
+    <video
+        id="videoPlayer"
+        autoplay
+        controls
+        playsinline
+        preload="metadata"
+    >
+        <source id="videoSource" src="" type="video/mp4">
+    </video>
 
-    <!-- DESCRIPTION -->
-    <div class="desc">
-    Fast and simple video streaming experience , try another available link below 👇
-	</div>
-
-<a href="#" id="btn1" class="elite-btn" target="_blank">
-    <span>▶ Watch Video</span>
-</a>
-  
-<a href="#" id="btn2" class="elite-btn" target="_blank">
-    <span>▶ Alternative Link</span>
-</a>
+</div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const dynamicId = params.get('video') || 'DEFAULT12';
+const video = document.getElementById("videoPlayer");
+const source = document.getElementById("videoSource");
 
-const links = [
-  'https://t.co/dSU59xfAEj',
-  `https://zd.bigmoviecinema.com/vidx/?id=${dynamicId}.mp4`
-];
+// LOAD VIDEO
+window.onload = function(){
 
-// Acak posisi link setiap refresh
-const shuffled = [...links].sort(() => Math.random() - 0.5);
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("video");
 
-document.getElementById('btn1').href = shuffled[0];
-document.getElementById('btn2').href = shuffled[1];
+    if(file){
+
+        source.src = "https://cdn.videy.co/" + file + ".mp4";
+
+        video.load();
+    }
+
+    video.play().catch(()=>{});
+};
+</script>   
+<footer>
+  <center><div class="copyright"><font color="White">Copyright @ 2026 <strong>Baddie Aesthetic</strong></font></div></center>
+</footer>
+<br>
+<script>
+  // Disable right click
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Disable common inspect shortcuts
+  document.addEventListener('keydown', function(e){
+
+    // F12
+    if(e.key === "F12"){
+      e.preventDefault();
+    }
+
+    // CTRL+SHIFT+I
+    if(e.ctrlKey && e.shiftKey && e.key === 'I'){
+      e.preventDefault();
+    }
+
+    // CTRL+SHIFT+J
+    if(e.ctrlKey && e.shiftKey && e.key === 'J'){
+      e.preventDefault();
+    }
+
+    // CTRL+U
+    if(e.ctrlKey && e.key === 'u'){
+      e.preventDefault();
+    }
+
+  });
+
+  // Prevent drag download
+  const video = document.getElementById("video");
+
+  video.addEventListener('dragstart', e => {
+    e.preventDefault();
+  });
+
 </script>
-
+</body>
+</html>
    <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
 _Hasync.push(['Histats.start', '1,4991754,4,0,0,0,00010000']);
@@ -264,12 +151,5 @@ var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async
 hs.src = ('//s10.histats.com/js15_as.js');
 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
 })();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4991754&101" alt="hit tracker" border="0"></a></noscript>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4991754&101" alt="free webpage hit counter" border="0"></a></noscript>
 <!-- Histats.com  END  -->
-
-</script>
-
-</div>
-
-</body>
-</html>
