@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Baddie Aesthetic Video Player</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    background:#050505;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
+    color:#fff;
+}
+
+/* Background */
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,#222 0%,#050505 60%);
+    z-index:-1;
+}
+
+/* Player */
+#playerWrap{
+    position:relative;
+    width:100%;
+    max-width:950px;
+    margin:20px auto;
+    padding:10px;
+    box-sizing:border-box;
+}
+
+video{
+    width:100%;
+    background:#000;
+    border-radius:20px;
+    box-shadow:
+    0 0 30px rgba(255,0,0,.15),
+    0 0 80px rgba(0,0,0,.8);
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    #playerWrap{
+        padding:0;
+        margin:0;
+    }
+
+    video{
+        border-radius:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="playerWrap">
+
+    <video
+        id="videoPlayer"
+        autoplay
+        controls
+        playsinline
+        preload="metadata"
+    >
+        <source id="videoSource" src="" type="video/mp4">
+    </video>
+
+</div>
+
+<script>
+const video = document.getElementById("videoPlayer");
+const source = document.getElementById("videoSource");
+
+// LOAD VIDEO
+window.onload = function(){
+
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("video");
+
+    if(file){
+
+        source.src = "https://cdn.videy.co/" + file + ".mp4";
+
+        video.load();
+    }
+
+    video.play().catch(()=>{});
+};
+</script>   
+<footer>
+  <center><div class="copyright"><font color="White">Copyright @ 2026 <strong>Baddie Aesthetic</strong></font></div></center>
+</footer>
+<br>
+<script>
+  // Disable right click
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Disable common inspect shortcuts
+  document.addEventListener('keydown', function(e){
+
+    // F12
+    if(e.key === "F12"){
+      e.preventDefault();
+    }
+
+    // CTRL+SHIFT+I
+    if(e.ctrlKey && e.shiftKey && e.key === 'I'){
+      e.preventDefault();
+    }
+
+    // CTRL+SHIFT+J
+    if(e.ctrlKey && e.shiftKey && e.key === 'J'){
+      e.preventDefault();
+    }
+
+    // CTRL+U
+    if(e.ctrlKey && e.key === 'u'){
+      e.preventDefault();
+    }
+
+  });
+
+  // Prevent drag download
+  const video = document.getElementById("video");
+
+  video.addEventListener('dragstart', e => {
+    e.preventDefault();
+  });
+
+</script>
+</body>
+</html>
+   <!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4991754,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4991754&101" alt="free webpage hit counter" border="0"></a></noscript>
+<!-- Histats.com  END  -->
